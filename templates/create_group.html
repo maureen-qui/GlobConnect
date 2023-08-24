@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Collaboration Group</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Create Collaboration Group</h1>
+    <form id="createGroupForm" action="{{ url_for('create_group') }}" method="POST">
+        <label for="groupName">Group Name:</label>
+        <input type="text" id="groupName" name="groupName" required>
+        <label for="groupDescription">Group Description:</label>
+        <textarea id="groupDescription" name="groupDescription" required></textarea>
+        <button type="submit">Create Group</button>
+    </form>
+    <script src="{{ url_for('static', filename='form_validation.js') }}"></script>
+</body>
+</html>

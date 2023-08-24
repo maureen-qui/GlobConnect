@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join/Leave Group</title>
+</head>
+<body>
+    <h1>Join or Leave a Group</h1>
+    <h2>Groups You Can Join</h2>
+    <ul>
+        {% for group in available_groups %}
+            <li>{{ group.name }} - {{ group.description }}
+                <a href="{{ url_for('join_group', group_id=group.id) }}">Join</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <h2>Groups You Can Leave</h2>
+    <ul>
+        {% for group in joined_groups %}
+            <li>{{ group.name }} - {{ group.description }}
+                <a href="{{ url_for('leave_group', group_id=group.id) }}">Leave</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
