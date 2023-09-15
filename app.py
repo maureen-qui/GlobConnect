@@ -14,8 +14,13 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+
+        # Hash the password before storing it
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
+        # Store user information (Replace with database st
         users.append({'username': username, 'password': password})
+        
         return redirect(url_for('login'))
     return render_template('register.html')
 
@@ -25,7 +30,9 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
+        # Check if the user exists and validate the password
         user = next((u for u in users if u['username'] == username and u['password'] == password), None)
+        
         if user and bcrypt.checkpw(password.encode('utf-8'), user['password']):
             session['username'] = user['username']
             return f'Welcome, {user["username"]}!'  
@@ -35,6 +42,7 @@ def login():
 
 @app.route('/logout')
   def logout():
+    # Clear the session to log the user out  
     session.pop('username', None)
     return redirect(url_for('index'))
 
